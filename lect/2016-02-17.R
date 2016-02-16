@@ -4,6 +4,7 @@ library(ggvis)
 library(mosaic)
 library(lubridate)
 library(GGally)
+library(shiny)
 
 # PRELUDE: Read the data (and potentially stash it away..)
 occ <- read.csv("http://www.amherst.edu/~nhorton/rice/chapter10/flow-occ.csv")
