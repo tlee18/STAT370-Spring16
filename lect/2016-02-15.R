@@ -11,8 +11,8 @@ occ <- mutate(occ, time = mdy_hms(Timestamp),
               day = day(time), 
               id = 1:nrow(occ),
               Lane.1.Occchange = Lane.1.Occ - lag(Lane.1.Occ))
-# save(occ, file="occ.Rda")
-# load("occ.Rda")
+ save(occ, file="occ.Rda")
+ load("occ.Rda")
 
 # INTERLUDE 1: Scatterplot matrices
 sortocc <- select(occ, Lane.1.Occ, Lane.2.Occ, Lane.1.Flow, Lane.2.Flow, time)
