@@ -14,9 +14,7 @@ shinyUI(fluidPage(
       numericInput("y", "number of successes observed:", 1,
                    min = 1, max = 100),
       numericInput("n", "out of this many trials (must be larger than # successes):", 3,
-                   min = 1, max = 100),
-      selectInput("posterior", "Display posterior?",
-                  choices = c("Yes", "No"), selected="No")),
+                   min = 1, max = 100)),
     # Show a plot of the generated distribution
     mainPanel(plotOutput("distPlot"))
   )
