@@ -1,0 +1,58 @@
+---
+title: "STAT370: more MOM"
+author: "Nicholas Horton (nhorton@amherst.edu)"
+date: "February 22, 2016"
+output: 
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+
+```{r, include=FALSE}
+# Don't delete this chunk if you are using the mosaic package
+# This loads the mosaic and dplyr packages
+require(mosaic)
+```
+
+```{r, include=FALSE}
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+
+# This changes the default colors in lattice plots.
+trellis.par.set(theme=theme.mosaic())  
+
+# knitr settings to control how R chunks work.
+require(knitr)
+opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small"    # slightly smaller font for code
+)
+```
+
+#### Rice 8.16 (page 316)
+
+Here we know that the MOM estimator is $\sqrt{\Sigma_1^n x_i^2 / (2n)}$ and that the MLE is $\Sigma_1^n |x_i|$.
+
+```{r}
+numsim <- 5000
+simfun <- function(n=1000, scale=1) {
+  x <- VGAM::rlaplace(n, location=0, scale=scale)
+  mom <- sqrt(sum(x^2)/(2*n))
+  mle <- sum(abs(x))/n
+  return(data.frame(mom=mom, mle=mle))
+}
+res <- do(numsim)*simfun()
+head(res, 3)
+```
+
+```{r}
+densityplot(~ mle + mom, auto.key=TRUE, xlab="Sampling distribution of estimators", 
+            lwd=2, data=res)
+var(~ mom, data=res)/var(~ mle, data=res)
+```
