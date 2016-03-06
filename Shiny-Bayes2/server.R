@@ -7,6 +7,11 @@ shinyServer(function(input, output) {
     prior <- list(input$alpha, input$beta)
     posterior <- list((input$alpha + input$y), (input$beta + input$n - input$y))
 
+    # Watch out for Michael!
+    if (input$n < input$y) {
+       stop("Number of successes must be at least as large as the number of trials!")
+    }
+
     # pesky details to tweak y axis limits
     xvals <- seq(0, 1, length=101)
     eps <- 0.10
