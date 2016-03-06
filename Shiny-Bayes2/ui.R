@@ -4,7 +4,7 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Bayesian inference"),
   p("Example E of section 3.5 of Rice 3rd edition, page 94-95"),
-  p("beta prior, likelihood is binomial, posterior is beta"),
+  p("beta prior (blue), likelihood is binomial, posterior is beta (green), plus likelihood (brown)"),
   p("See Figure 3.16 for results from a beta(1, 1) prior and 13 successes out of 20 attempts"),
 
   sidebarLayout(
